@@ -41,37 +41,37 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    
+
     User.findOne({email : email})
-    .then(user => {
-        if(!user){
-            return res.status(404).json({email: 'User email not found'})
-        }
-        
-        //check password @compare bcrypt
-        bcrypt.compare(password, user.password)
-        .then(isMatch => {
-            if(isMatch) {
-                //User Matched
-                const payload = { id : user._id, name: user.name, avatar: user.avatar} //Create JWT Payload
-                
-                //Sign Token
-                jwt.sign(
-                    payload, 
-                    keys.secretOrKey, 
-                    {expiresIn: 60*60*24}, 
-                    (err, token)=>{
-                        res.json({
-                            success : true,
-                            token: 'Bearer ' + token
-                        })
-                    }
-                )
+        .then(user => {
+            if(!user){
+                return res.status(404).json({email: 'User email not found'})
             }
-            else return res.status(400).json({password : 'Password incorrect'})
+
+            //check password @compare bcrypt
+            bcrypt.compare(password, user.password)
+                .then(isMatch => {
+                    if(isMatch) {
+                        //User Matched
+                        const payload = { id : user._id, name: user.name, avatar: user.avatar} //Create JWT Payload
+
+                        //Sign Token
+                        jwt.sign(
+                            payload, 
+                            keys.secretOrKey, 
+                            {expiresIn: 60*60*24}, 
+                            (err, token)=>{
+                                res.json({
+                                    success : true,
+                                    token: 'Bearer ' + token
+                                })
+                            }
+                        )
+                    }
+                    else return res.status(400).json({password : 'Password incorrect'})
+                })
         })
-    })
 })
 
 module.exports =
-router
+ router
