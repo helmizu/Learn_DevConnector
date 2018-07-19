@@ -4,7 +4,11 @@
   "description": "learn mern fullstack",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon server.js"
+    "start" : "nodemon server.js",
+    "test": "nodemon server.js",
+    "client-install": "npm install --prefix client",
+    "client-start": "npm start --prefix client",
+    "dev" : "concurrently \"npm run server\" \"npm run client-start\""
   },
   "author": "Helmi Zulfikar",
   "license": "ISC",
@@ -20,6 +24,7 @@
     "validator": "^10.4.0"
   },
   "devDependencies": {
+    "concurrently": "^3.6.0",
     "nodemon": "^1.18.2"
   }
 }
