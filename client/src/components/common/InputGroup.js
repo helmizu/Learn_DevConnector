@@ -12,9 +12,9 @@ const InputGroup = ({
     onChange,
 }) => {
     return (  
-        <div className="input-group nb-3">
+        <div className="input-group mt-2">
         <div className="input-group-prepend" >
-            <span className="input-group-text" >
+            <span className="input-group-text text-center" style={{width:'45px'}} >
                 <i className={icon} />
             </span>
         </div>
