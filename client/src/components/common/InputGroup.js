@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 const InputGroup = ({
     name,
+    placeholder,
     value,
     error,
     icon,
@@ -37,6 +38,7 @@ InputGroup.propTypes = {
     name : PropTypes.string.isRequired,
     value : PropTypes.string.isRequired,
     icon : PropTypes.string,
+    placeholder : PropTypes.string,
     type : PropTypes.string.isRequired,
     error : PropTypes.string,
     onChange : PropTypes.func.isRequired
