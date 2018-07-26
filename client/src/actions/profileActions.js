@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { PROFILE_LOADING, GET_PROFILE, GET_ERRORS, CLEAR_CURRENT_PROFILE } from './types';
+import { PROFILE_LOADING, GET_PROFILE, GET_ERRORS, CLEAR_CURRENT_PROFILE, GET_PROFILES } from './types';
 import { logoutUser } from './authActions';
 
 export const getCurrentProfile = () => dispatch => {
@@ -17,6 +17,23 @@ export const getCurrentProfile = () => dispatch => {
         })
     })
 }
+
+export const getProfiles = () => dispatch => {
+    dispatch(setProfileLoading())
+    axios.get('/api/profile/all').then(res => {
+        dispatch({
+            type : GET_PROFILES,
+            payload : res.data
+        })
+    })
+    .catch(err => {
+        dispatch({
+            type : GET_PROFILES,
+            payload : null
+        })
+    })
+}
+
 //create profile
 export const createProfile = (profileData, history) => dispatch => {
     axios.post('/api/profile', profileData).then(res => history.push('/dashboard'))
