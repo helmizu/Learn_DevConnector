@@ -6,9 +6,6 @@ import { getProfiles } from '../../actions/profileActions'
 import ProfileItem from './ProfileItem';
 
 export class Profiles extends Component {
-    constructor(props) {
-        super(props)
-    }
     componentDidMount(){
         this.props.getProfiles()
     }
@@ -27,12 +24,12 @@ export class Profiles extends Component {
             }
         }
         return (
-            <div class="profiles">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-12">
-                <h1 class="display-4 text-center">Developer Profiles</h1>
-                <p class="lead text-center">Browse and connect with developers</p>
+            <div className="profiles">
+            <div className="container">
+              <div className="row">
+                <div className="col-md-12">
+                <h1 className="display-4 text-center">Developer Profiles</h1>
+                <p className="lead text-center">Browse and connect with developers</p>
                 {profileItems}
                 </div>
               </div>
